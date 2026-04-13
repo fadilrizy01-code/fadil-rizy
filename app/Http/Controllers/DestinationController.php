@@ -6,12 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\Destination;
 use App\Models\destination as ModelsDestination;
 use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
 class DestinationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $destinations = Destination::all();
+        $keyword = $request->input('search');
+        if ($keyword !=''){
+            $destinations = Destination::where('name','LIKE','%'.$keyword."%")->paginate(5);
+        } else{
+            $destinations = Destination::orderby('id')->paginate(5);
+        }
         return view('pages.indexDestinasi', compact('destinations'));
     }
 
@@ -40,7 +46,7 @@ class DestinationController extends Controller
         if($destination){
 
            $destination->delete();
-           return redirect('/destinations')->with('success','Destinatiob deleted successfully.');
+           return redirect('/destinations')->with('success','Destination deleted successfully.');
         }else{
             return redirect('/destinations')->with('error','Destinations not found.');
         }   
@@ -63,3 +69,5 @@ class DestinationController extends Controller
         }
     }
 }
+
+ 
