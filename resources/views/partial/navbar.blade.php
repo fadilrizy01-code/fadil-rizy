@@ -3,7 +3,7 @@
 
     <!-- Logo / Brand -->
     <a class="navbar-brand fw-bold fs-4" href="#">
-      <h1>Daftar Destinasi</h1>
+      <h1>Sistem Informasi Wisata</h1>
     </a>
 
     <!-- Toggle (Mobile) -->

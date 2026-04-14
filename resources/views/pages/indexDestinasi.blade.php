@@ -11,7 +11,7 @@
     @endif
     
        <div class="d-flex justify-content-between mb-3">
-            <h1>Daftar Destinasi</h1>
+            <h1 class="fw-bold text-primary mb-0">Daftar Destinasi</h1>
             <form action="/destinations" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search.." name="search" value="{{request('search') }}
