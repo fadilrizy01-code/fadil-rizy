@@ -14,13 +14,13 @@
 
     <h3 class="fw-bold text-primary mb-1">User Management</h3>
 
-    <form method="GET" action="/users" class="d-flex gap-2">
+    <form method="GET" action="{{route('Attraction.index')}}" class="d-flex gap-2">
         <input type="text" name="search" class="form-control" placeholder="Search...">
         <button class="btn btn-secondary">Search</button>
     </form>
 
-    <a href="/users/create" class="btn btn-success">
-        Add user
+    <a href="{{route('Attraction.create')}}" class="btn btn-success">
+        Add Attraction
     </a>
 
 </div> 
@@ -31,23 +31,22 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Action</th>
+                    <th>description</th>
+                   <th>action</th>
 
                 </tr>   
             </thead>
             <tbody>
-    @foreach($users as $d)
+    @foreach($Attraction as $d)
     <tr>
         <td>{{$d->id}}</td>
         <td>{{ $d->name }}</td>
-        <td>{{ $d->email }}</td>
-        <td><span class="text-muted">***</span></td>
+        <td>{{ $d->description }}</td>
+        
         <td>
             <div class="d-flex gap-2 justify-content-center">
 
-                <form action="/user/{{$d->id}}" method="post">
+                <form action="{{route('Attraction.delete',$d->id)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm"
@@ -56,7 +55,7 @@
                     </button>
                 </form>
 
-                <a href="/user/{{$d->id}}/edit" 
+                <a href="{{route('Attraction.edit',$d->id) }}" 
                    class="btn btn-warning btn-sm">
                     Edit
                 </a>
@@ -67,7 +66,7 @@
 </tbody>
 
 <div class="mt-3 d-flex justify-content-center">
-    {{ $users->links('pagination::bootstrap-5') }}
+    {{ $Attraction->links('pagination::bootstrap-5') }}
 </div>
 
 </div>

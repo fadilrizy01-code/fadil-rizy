@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-<div class="container mt-4">
+<div class="card m-5 p-3">
     <form action="/users" method="post">
         @csrf
 

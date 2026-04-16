@@ -21,7 +21,7 @@
         </form>
         </div>
 
-       <a href="/destinations/create" class="btn btn-succes"><button>Add Destination</button></a>
+       <a href="{{route('destinations.create')}}" class="btn btn-succes"><button>Add Destination</button></a>
 
        <div class="mt-3 d-flex justify-content-center">
         {{ $destinations->links('pagination::bootstrap-5')}}
@@ -54,11 +54,11 @@
                 <td>{{$d->working_hours}}</td>
                 <td>{{$d->working_days}}</td>
                 <td>
-                        <a href="/detaildestinasi/{{ $d->id }}" class="btn btn-info btn-sm me-1" title="Lihat Detail">
+                        <a href="{{route('destinations.show',$d->id)}}" class="btn btn-info btn-sm me-1" title="Lihat Detail">
                             Detail
                         </a> 
-                        <a href="/destinations/{{$d->id}}/edit" class="btn btn-warning">edit</a>           
-                    <form action="/destination/{{$d->id}}" method="post" style="display:inline; ">
+                        <a href="{{route('destinations.edit',$d->id)}}" class="btn btn-warning">edit</a>           
+                    <form action="{{route('destinations.delete',$d->id)}}" method="post" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure delete {{$d->name}}?')">

@@ -19,18 +19,18 @@ class UserController extends Controller
         ->orderBy('id')
         ->paginate(5);
 
-        return view('pages.IndexUser', compact('users'));
+        return view('pages.user.IndexUser', compact('users'));
     }
 
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('pages.detailusers', compact('user'));
+        return view('pages.user.DetailUser', compact('user'));
     }
 
     public function create()
     {
-        return view('pages.CreateUser');
+        return view('pages.user.CreateUser');
     }
 
     public function store(Request $request)
@@ -53,7 +53,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('pages.EditUser', compact('user'));
+        return view('pages.user.EditUser', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -88,4 +88,7 @@ class UserController extends Controller
 
         return redirect('/users')->with('success', 'User deleted successfully.');
     }
+
+    
+
 }
