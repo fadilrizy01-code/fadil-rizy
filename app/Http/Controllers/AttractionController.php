@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attraction;
 use Illuminate\Http\Request;
+use App\Models\Destination;
 
 class AttractionController extends Controller
 {
@@ -20,29 +21,49 @@ class AttractionController extends Controller
 
 
      public function create(){
-        return view('pages.attraction.AttractionCreate');
+        $destinations = Destination::all();
+        return view('pages.attraction.AttractionCreate', compact('destinations'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request) {
 
-        Attraction::create($request->all());
-        return redirect(route('Attraction.index'))->with('success','Data tersimpan!');
+    $validated= $request->validate([
+        'destination_id' => 'required|',
+        'name' => 'required',
+        'description' => 'nullable',
+    ]);
+    \App\Models\Attraction::create($validated);
+
+     return redirect()->route('Attraction.index')->with('success', 'Data berhasil ditambahkan!.');
     }
 
     public function edit($id){
-        $Attraction = Attraction::find($id);
-        return view('pages.attraction.AttractionEdit', compact('Attraction'));
+        $destinations = Destination::all();
+        $Attraction = Attraction::findorFail($id);
+        return view('pages.attraction.AttractionEdit', compact('Attraction', 'destinations'));
     }
 
     public function update(Request $request, $id) {
-        $Attraction = Attraction::find($id);
-        $Attraction->update($request->all());
-        return redirect(route('Attraction.index'))->with('success','Data diupdate!');
+
+    $request->validate([
+        'destination_id' => 'required|',
+        'name' => 'required',
+        'description' => 'nullable',
+    ]);
+
+        $attraction = Attraction::find($id);
+        $attraction->update($request->all());
+        return redirect()->route("Attraction.index")->with('success', 'Data berhasil diupdate!.');
     }
 
     public function delete($id){
         $Attraction =Attraction::find($id);
         $Attraction->delete();
         return redirect(route('Attraction.index'))->with('success','Data dihapus!');
+    }
+
+    public function detail($id){
+        $attraction = Attraction::find($id);
+        return view('pages.attraction.AttractionDetail',compact('attraction'));
     }
 }

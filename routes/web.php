@@ -87,4 +87,5 @@ Route::prefix('Attraction')->name('Attraction.')->group(function() {
     Route::get('/attraction/{id}/edit',[AttractionController::class,'edit'])->name('edit');
     Route::put('/attraction/{id}/update',[AttractionController::class,'update'])->name('update');
     Route::delete('/attraction/{id}/delete',[AttractionController::class,'delete'])->name('delete');
+    Route::get('/{id}/detail',[AttractionController::class,'detail'])->name('detail');
 });

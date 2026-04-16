@@ -20,7 +20,7 @@
     </form>
 
     <a href="{{route('Attraction.create')}}" class="btn btn-success">
-        Add Attraction
+        Add
     </a>
 
 </div> 
@@ -46,6 +46,10 @@
         <td>
             <div class="d-flex gap-2 justify-content-center">
 
+                <a href="{{route('Attraction.detail',$d->id) }}" 
+                   class="btn btn-info btn-sm">
+                    detail
+                </a>
                 <form action="{{route('Attraction.delete',$d->id)}}" method="post">
                     @csrf
                     @method('DELETE')
