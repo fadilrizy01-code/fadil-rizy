@@ -14,8 +14,9 @@ class destination extends Model
         'working_hours',
         'working_days',
         'ticket_price',
+        'image'
     ];
-    
+
     public function attractions()
     {
         return $this->hasMany(Attraction::class);

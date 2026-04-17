@@ -7,6 +7,7 @@ use App\Models\destination;
 use App\Http\Controllers\UserController;
 use App\Models\Attraction;
 use App\Models\User;
+use App\Http\Controllers\ReviewController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -89,3 +90,15 @@ Route::prefix('Attraction')->name('Attraction.')->group(function() {
     Route::delete('/attraction/{id}/delete',[AttractionController::class,'delete'])->name('delete');
     Route::get('/{id}/detail',[AttractionController::class,'detail'])->name('detail');
 });
+
+Route::prefix('Review')->name('Review.')->group(function() {
+    Route::get('/',[ReviewController::class,'index'])->name('index');
+    Route::get('/create',[ReviewController::class,'create'])->name('create');
+    Route::post('/store',[ReviewController::class,'store'])->name('store');
+    Route::get('/{id}/edit',[ReviewController::class,'edit'])->name('edit');
+    Route::put('/{id}/update',[ReviewController::class,'update'])->name('update');
+    Route::delete('/{id}/delete',[ReviewController::class,'delete'])->name('delete');
+    Route::get('/{id}/detail',[ReviewController::class,'detail'])->name('detail');
+});
+
+
