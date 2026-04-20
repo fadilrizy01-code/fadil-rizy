@@ -11,7 +11,7 @@
     @endif
     
        <div class="d-flex justify-content-between mb-3">
-            <h1 class="fw-bold text-primary mb-0">Daftar Destinasi</h1>
+            <h1 class="fw-bold text-dark mb-0">Daftar Destinasi</h1>
             <form action="/destinations" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search.." name="search" value="{{request('search') }}
@@ -21,7 +21,12 @@
         </form>
         </div>
 
-       <a href="{{route('destinations.create')}}" class="btn btn-succes"><button>Add Destination</button></a>
+       <div class="d-flex justify-content-between align-items-center mb-4">
+        
+        <a href="/destinations/create" class="btn btn-success px-4">
+            +ADD Destination
+        </a>
+    </div>
 
        <div class="mt-3 d-flex justify-content-center">
         {{ $destinations->links('pagination::bootstrap-5')}}

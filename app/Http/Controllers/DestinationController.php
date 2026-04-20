@@ -50,6 +50,9 @@ class DestinationController extends Controller
                 $imagePath = $request->file('image')->store('images','public');
                 $validated['image'] = basename($imagePath);
             }
+            Destination::create($validated);
+
+            return redirect('/destinations')->with('succes','Destination created successfully.');
 
 
         
@@ -79,6 +82,7 @@ class DestinationController extends Controller
     }
     public function update(Request $request, $id)
     {
+        
         $validated = $request->validate([
             'name' => 'required',
             'description' => 'nullable',

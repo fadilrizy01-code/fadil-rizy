@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm py-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary shadow-sm py-3">
   <div class="container">
 
     <!-- Logo / Brand -->
@@ -43,8 +43,13 @@
 
       <!-- Menu kanan -->
       <div class="d-flex gap-2">
-        <a href="#" class="btn btn-light btn-sm px-3">Login</a>
-        <a href="#" class="btn btn-outline-light btn-sm px-3">Daftar</a>
+        <a href="#" class="btn btn-outline-light rounded-pill
+          px-4 fw-bold">Login</a>
+        <form action="{{route('logout')}}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-outline-light rounded-pill
+          px-4 fw-bold">Logout</button>
+        </form>
       </div>
 
     </div>

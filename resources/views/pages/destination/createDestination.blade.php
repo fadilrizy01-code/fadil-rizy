@@ -11,7 +11,7 @@
         </ul>
     </div>
 }
-
+@endif
 <form action="/destinations" method="post" class="form-floating">
     @csrf
 

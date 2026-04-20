@@ -1,22 +1,22 @@
 @extends("master")
 
 @section('content')
-<div class="container py-4">
+<div class="container py-5">
 
-    <div class="card shadow-lg border-0">
+    <div class="card shadow border-0 rounded-4 overflow-hidden">
         <div class="row g-0">
 
-            {{-- Optional gambar (kalau ada field image) --}}
-            {{-- 
+            {{-- Gambar --}}
             <div class="col-md-5">
-                <img src="{{ asset('storage/'.$destination->image) }}" 
-                     class="img-fluid h-100 object-fit-cover rounded-start" 
+                <img src="{{ asset('storage/images/'.$destination->image) }}" 
+                     class="img-fluid h-100 w-100 object-fit-cover"
+                     style="min-height: 350px;"
                      alt="{{ $destination->name }}">
-            </div> 
-            --}}
+            </div>
 
-            <div class="col-md-12">
-                <div class="card-body p-4">
+            {{-- Detail --}}
+            <div class="col-md-7">
+                <div class="card-body p-4 p-md-5">
 
                     <h2 class="fw-bold mb-3">
                         🌍 {{ $destination->name }}
@@ -26,40 +26,53 @@
                         {{ $destination->description }}
                     </p>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6 mb-2">
-                            <strong>📍 Lokasi:</strong><br>
-                            <span class="badge bg-secondary">
-                                {{ $destination->location }}
-                            </span>
+                    <div class="row">
+
+                        <div class="col-6 mb-3">
+                            <div class="p-3 bg-light rounded-3 h-100">
+                                <small class="text-muted">📍 Lokasi</small>
+                                <div class="fw-semibold">
+                                    {{ $destination->location }}
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-md-6 mb-2">
-                            <strong>📅 Hari Buka:</strong><br>
-                            <span class="badge bg-primary">
-                                {{ $destination->working_days }}
-                            </span>
+                        <div class="col-6 mb-3">
+                            <div class="p-3 bg-light rounded-3 h-100">
+                                <small class="text-muted">📅 Hari Buka</small>
+                                <div class="fw-semibold">
+                                    {{ $destination->working_days }}
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-md-6 mb-2">
-                            <strong>⏰ Jam Operasional:</strong><br>
-                            {{ $destination->working_hours }}
+                        <div class="col-6 mb-3">
+                            <div class="p-3 bg-light rounded-3 h-100">
+                                <small class="text-muted">⏰ Jam Operasional</small>
+                                <div class="fw-semibold">
+                                    {{ $destination->working_hours }}
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-md-6 mb-2">
-                            <strong>💰 Harga Tiket:</strong><br>
-                            <span class="text-success fw-bold fs-5">
-                                Rp {{ number_format($destination->ticket_price, 0, ',', '.') }}
-                            </span>
+                        <div class="col-6 mb-3">
+                            <div class="p-3 bg-light rounded-3 h-100">
+                                <small class="text-muted">💰 Harga Tiket</small>
+                                <div class="fw-bold text-success fs-5">
+                                    Rp {{ number_format($destination->ticket_price, 0, ',', '.') }}
+                                </div>
+                            </div>
                         </div>
+
                     </div>
 
-                    <div class="mt-4">
-                        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">
+                    {{-- Tombol --}}
+                    <div class="mt-4 d-flex gap-2">
+                        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary rounded-pill">
                             ← Kembali
                         </a>
-                        <a href="{{ url('destination') }}" class="btn btn-primary">
-                            Lihat Semua Destinasi
+                        <a href="{{ url('destination') }}" class="btn btn-primary rounded-pill">
+                            Lihat Semua
                         </a>
                     </div>
 

@@ -11,8 +11,9 @@
         </ul>
     </div>
 }
+@endif
 
-<form action="/destinations/{{$destination->id}}/update" method="post" class="form-floating">
+<form action="/destinations/{{$destination->id}}/update" method="post" class="form-floating" enctype="multipart/form-data">
     @csrf
     @method("put")
 

@@ -9,6 +9,12 @@ use App\Models\Attraction;
 use App\Models\User;
 use App\Http\Controllers\ReviewController;
 
+require __DIR__ . '/auth.php';
+
+Route::get('/dashboard',function(){
+    return redirect()->route('destinations.index');
+})->middleware(['auth','verified'])->name('dashboard');
+
 Route::get('/', function () {
     return view('welcome');
 });
